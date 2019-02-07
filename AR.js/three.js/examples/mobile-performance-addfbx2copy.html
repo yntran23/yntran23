@@ -198,7 +198,7 @@
         arWorldRoot.add( mesh ); //instead of adding mesh to the scene right away we add only when the target is detected
         //end icosphere code
         ///////////////////////////////////////////////////////////
-        map = THREE.ImageUtils.loadTexture('../texturez/dots.jpg');
+        map = THREE.ImageUtils.loadTexture('../../data/data/texture.jpg');
         geometry = new THREE.IcosahedronGeometry(150, 0);
         material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xc3bdbd, map: map, transparent: true, opacity: 0.65});
         mesh = new THREE.Mesh(geometry, material);
