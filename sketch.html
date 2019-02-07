@@ -35,10 +35,10 @@
 				
 				
 				// paste your code from the geometryGUI here
-				map = THREE.ImageUtils.loadTexture('../texturez/dots.jpg');
+				map = THREE.ImageUtils.loadTexture('AR.js/data/data/texture.jpg');
 				geometry = new THREE.IcosahedronGeometry(150, 0);
-				material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xc3bdbd, map: map, transparent: true, opacity: 0.65});
-				mesh = new THREE.Mesh(geometry, material);
+				//material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xc3bdbd, map: map, transparent: true, opacity: 0.65});
+				mesh = new THREE.Mesh(geometry, map);
 				map.wrapS = map.wrapT = THREE.RepeatWrapping;
 				map.repeat.set( 1, 1 );
 				mesh.castShadow = true;
@@ -55,9 +55,9 @@
 					vertex.z = 1000 * Math.random() - 500;
 					geometry.vertices.push( vertex );
 				}
-				material = new THREE.ParticleBasicMaterial( { size: 5, sizeAttenuation: false, transparent: true } );
+                material = new THREE.ParticleBasicMaterial( { size: 5, sizeAttenuation: false, transparent: true } );
 				material.color.setHex( 0xff00ff );
-				particles = new THREE.ParticleSystem( geometry, material );
+				particles = new THREE.ParticleSystem( geometry, map );
 				particles.sortParticles = true;
 				scene.add( particles );
 
