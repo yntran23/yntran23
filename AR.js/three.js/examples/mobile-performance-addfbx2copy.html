@@ -200,10 +200,10 @@
         mesh = new THREE.Mesh(geometry, material);
         mesh.rotation.x = Date.now() * 0.00005;
         mesh.rotation.y = Date.now() * 0.00005;
+        arWorldRoot.add(mesh);
         map.wrapS = map.wrapT = THREE.RepeatWrapping;
         map.repeat.set( 1, 1 );
         mesh.castShadow = true;
-        scene.add(mesh);
 				
         renderer.shadowMapEnabled = true;
         
@@ -220,9 +220,9 @@
 				material.color.setHex( 0xff00ff );
 				particles = new THREE.ParticleSystem( geometry, material );
 				particles.sortParticles = true;
-				scene.add( particles );
                 renderer.render( scene, camera );
 				particles.rotation.y = Date.now() * 0.00005;
+                arWorldRoot.add(particles);
 				var time = Date.now() * 0.0005;
 				h = ( 360 * ( 1.0 + time ) % 360 ) / 360;
 				material.color.setHSL( h, 0.5, 0.5 );
@@ -265,35 +265,26 @@
 //         var texture = textureLoader.load( '../../data/data/UV_Grid_Sm.jpg' );
 //
 //         // obj model
-//         var onProgress = function ( xhr ) {
-//             if ( xhr.lengthComputable ) {
-//                 var percentComplete = xhr.loaded / xhr.total * 100;
-//                 console.log( Math.round(percentComplete, 2) + '% downloaded' );
-//             }
-//         };
-//
-//         var onError = function ( xhr ) {
-//         };
-//
-//         var loader = new THREE.OBJLoader( manager );
-//         loader.load( '../../data/data/male02/male02.obj', function ( object ) {
-//
-//             object.traverse( function ( child ) {
-//
-//                 if ( child instanceof THREE.Mesh ) {
-//
-//                     child.material.map = texture;
-//
-//                 }
-//
-//             } );
-//
-// //					object.position.y = - 95;
-// //					scene.add( object );
-//             object.scale.set(.02, .02, .02);
-//             arWorldRoot.add( object );
-//
-//         }, onProgress, onError );
+         var onProgress = function ( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        };
+        var onError = function () { };
+        THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+        new THREE.MTLLoader()
+            .setPath( '../../data/data/' )
+            .load( 'cone.mtl', function ( materials ) {
+                materials.preload();
+                new THREE.OBJLoader()
+                    .setMaterials( materials )
+                    .setPath( '../../data/data/' )
+                    .load( 'cone.obj', function ( object ) {
+                        object.scale.set(.4, .4, .4);
+                        arWorldRoot.add( object );
+                    }, onProgress, onError );
+            } );
 
          //end obj code
         ///////////////////////////////////////////////////////////
