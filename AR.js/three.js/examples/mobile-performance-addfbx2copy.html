@@ -192,7 +192,7 @@
         //add the geometry, material, and mesh lines from the 3js GUI
         //MAKE SURE SCALE IS 1 (a scale of 1 will mean your object is as big as the image target)
         geometry = new THREE.IcosahedronGeometry(1, 0); //edit scale (in this code a scale of 1 = size of target image)
-        var material	= new THREE.MeshNormalMaterial(); 
+        //var material	= new THREE.MeshNormalMaterial(); 
         var mesh	= new THREE.Mesh( geometry, material );
         mesh.position.y	= 0.5 //position y equals how far away from target 
         arWorldRoot.add( mesh ); //instead of adding mesh to the scene right away we add only when the target is detected
@@ -211,23 +211,23 @@
         renderer.shadowMapEnabled = true;
         
         ///////////////////////////////////////////////////////////
-                geometry = new THREE.Geometry();
-				for ( i = 0; i < 5000; i ++ ) {
-					var vertex = new THREE.Vector3();
-					vertex.x = 1000 * Math.random() - 500;
-					vertex.y = 1000 * Math.random() - 500;
-					vertex.z = 1000 * Math.random() - 500;
-					geometry.vertices.push( vertex );
-				}
-				material = new THREE.ParticleBasicMaterial( { size: 5, sizeAttenuation: false, transparent: true } );
-				material.color.setHex( 0xff00ff );
-				particles = new THREE.ParticleSystem( geometry, material );
-				particles.sortParticles = true;
-                renderer.render( scene, camera );
-				particles.rotation.y = Date.now() * 0.00005;
-				var time = Date.now() * 0.0005;
-				h = ( 360 * ( 1.0 + time ) % 360 ) / 360;
-				material.color.setHSL( h, 0.5, 0.5 );
+//                geometry = new THREE.Geometry();
+//				for ( i = 0; i < 5000; i ++ ) {
+//					var vertex = new THREE.Vector3();
+//					vertex.x = 1000 * Math.random() - 500;
+//					vertex.y = 1000 * Math.random() - 500;
+//					vertex.z = 1000 * Math.random() - 500;
+//					geometry.vertices.push( vertex );
+//				}
+//				material = new THREE.ParticleBasicMaterial( { size: 5, sizeAttenuation: false, transparent: true } );
+//				material.color.setHex( 0xff00ff );
+//				particles = new THREE.ParticleSystem( geometry, material );
+//				particles.sortParticles = true;
+//                renderer.render( scene, camera );
+//				particles.rotation.y = Date.now() * 0.00005;
+//				var time = Date.now() * 0.0005;
+//				h = ( 360 * ( 1.0 + time ) % 360 ) / 360;
+//				material.color.setHSL( h, 0.5, 0.5 );
         //end icosphere code
         ///////////////////////////////////////////////////////////
         
