@@ -148,7 +148,7 @@
             ////////////////////////////////////////////////////////////////////////////////
             //   Add your custom image here and comment out existing file (hiro or kanji)
             ////////////////////////////////////////////////////////////////////////////////
-            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/pat.hiro'
+            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
             // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
         })
         // build smoothedControls
@@ -191,24 +191,24 @@
         //icosphere: example from from 3js playground
         //add the geometry, material, and mesh lines from the 3js GUI
         //MAKE SURE SCALE IS 1 (a scale of 1 will mean your object is as big as the image target)
-        // geometry = new THREE.IcosahedronGeometry(1, 0); //edit scale (in this code a scale of 1 = size of target image)
-        // //var material	= new THREE.MeshNormalMaterial();
-        // var mesh	= new THREE.Mesh( geometry, material );
-        // mesh.position.y	= 0.5 //position y equals how far away from target
-        // arWorldRoot.add( mesh ); //instead of adding mesh to the scene right away we add only when the target is detected
-        // //end icosphere code
-        // ///////////////////////////////////////////////////////////
-        // map = THREE.ImageUtils.loadTexture('../../data/data/texture.jpg');
-        // geometry = new THREE.IcosahedronGeometry(150, 0);
-        // //material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xc3bdbd, map: map, transparent: true, opacity: 0.65});
-        // mesh = new THREE.Mesh(geometry, map);
-        // mesh.rotation.x = Date.now() * 0.00005;
-        // mesh.rotation.y = Date.now() * 0.00005;
-        // map.wrapS = map.wrapT = THREE.RepeatWrapping;
-        // map.repeat.set( 1, 1 );
-        // mesh.castShadow = true;
-        //
-        // renderer.shadowMapEnabled = true;
+        geometry = new THREE.IcosahedronGeometry(1, 0); //edit scale (in this code a scale of 1 = size of target image)
+        //var material	= new THREE.MeshNormalMaterial();
+        var mesh	= new THREE.Mesh( geometry, material );
+        mesh.position.y	= 0.5 //position y equals how far away from target
+        arWorldRoot.add( mesh ); //instead of adding mesh to the scene right away we add only when the target is detected
+        //end icosphere code
+        ///////////////////////////////////////////////////////////
+        map = THREE.ImageUtils.loadTexture('../../data/data/texture.jpg');
+        geometry = new THREE.IcosahedronGeometry(150, 0);
+        //material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xc3bdbd, map: map, transparent: true, opacity: 0.65});
+        mesh = new THREE.Mesh(geometry, map);
+        mesh.rotation.x = Date.now() * 0.00005;
+        mesh.rotation.y = Date.now() * 0.00005;
+        map.wrapS = map.wrapT = THREE.RepeatWrapping;
+        map.repeat.set( 1, 1 );
+        mesh.castShadow = true;
+
+        renderer.shadowMapEnabled = true;
 
         ///////////////////////////////////////////////////////////
 //                geometry = new THREE.Geometry();
@@ -247,22 +247,22 @@
 
 
         ///////////////////////////////////////////////////////////
-        add a fbx model with animation
-       var loader = new THREE.FBXLoader();
-       loader.load( '../../data/data/lotusani.FBX', function ( object ) {
-           object.mixer = new THREE.AnimationMixer( object );
-           mixers.push( object.mixer );
-           var action = object.mixer.clipAction( object.animations[ 0 ] );
-           action.play();
-           object.traverse( function ( child ) {
-               if ( child.isMesh ) {
-                   child.castShadow = true;
-                   child.receiveShadow = true;
-               }
-           } );
-           object.scale.set(.02, .02, .02);
-           arWorldRoot.add( object );
-       } );
+        // add a fbx model with animation
+//        var loader = new THREE.FBXLoader();
+//        loader.load( '../../data/data/handGLoptB.fbx', function ( object ) {
+//            object.mixer = new THREE.AnimationMixer( object );
+//            mixers.push( object.mixer );
+//            var action = object.mixer.clipAction( object.animations[ 0 ] );
+//            action.play();
+//            object.traverse( function ( child ) {
+//                if ( child.isMesh ) {
+//                    child.castShadow = true;
+//                    child.receiveShadow = true;
+//                }
+//            } );
+//            object.scale.set(.02, .02, .02);
+//            arWorldRoot.add( object );
+//        } );
         //end fbx code
         ///////////////////////////////////////////////////////////
 
@@ -318,27 +318,27 @@
 
          ///////////////////////////////////////////////////////////
          //add obj model2 (static) with material textures
-        //
-        // var onProgress = function ( xhr ) {
-        //     if ( xhr.lengthComputable ) {
-        //         var percentComplete = xhr.loaded / xhr.total * 100;
-        //         console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
-        //     }
-        // };
-        // var onError = function () { };
-        // THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-        // new THREE.MTLLoader()
-        //     .setPath( '../../data/data/' )
-        //     .load( 'cone.mtl', function ( materials ) {
-        //         materials.preload();
-        //         new THREE.OBJLoader()
-        //             .setMaterials( materials )
-        //             .setPath( '../../data/data/' )
-        //             .load( 'cone.obj', function ( object ) {
-        //                 object.scale.set(.4, .4, .4);
-        //                 arWorldRoot.add( object );
-        //             }, onProgress, onError );
-        //     } );
+
+        var onProgress = function ( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        };
+        var onError = function () { };
+        THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+        new THREE.MTLLoader()
+            .setPath( '../../data/data/' )
+            .load( 'cone.mtl', function ( materials ) {
+                materials.preload();
+                new THREE.OBJLoader()
+                    .setMaterials( materials )
+                    .setPath( '../../data/data/' )
+                    .load( 'cone.obj', function ( object ) {
+                        object.scale.set(.4, .4, .4);
+                        arWorldRoot.add( object );
+                    }, onProgress, onError );
+            } );
 
 
 
