@@ -18,20 +18,20 @@
 
     <script src="js/Detector.js"></script>
     <script src="js/libs/stats.min.js"></script>
-    
+
     <script>
-        
+
         if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-        
+
         var clock = new THREE.Clock();
         var mixers = [];
         var stats;
-    
+
 //    init();
 //    animate();
 
-    
-        
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@
 
         // init scene and camera
         var scene	= new THREE.Scene();
-        
+
         light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
         light.position.set( 0, 200, 0 );
         scene.add( light );
@@ -66,7 +66,7 @@
         light.shadow.camera.left = -120;
         light.shadow.camera.right = 120;
         scene.add( light );
-        
+
         //////////FROM FBX IMPORT
         container = document.createElement( 'div' );
         document.body.appendChild( container );
@@ -84,16 +84,16 @@
         ////////////////////////////////////////////////////////////////////////////////
 
         var arToolkitSource = new THREEx.ArToolkitSource({
-            // to read from the webcam 
+            // to read from the webcam
             sourceType : 'webcam',
 
             // to read from an image
             // sourceType : 'image',
-            // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
+            // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
 
             // to read from a video
             // sourceType : 'video',
-            // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
+            // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',
         })
 
         arToolkitSource.init(function onReady(){
@@ -105,11 +105,11 @@
             onResize()
         })
         function onResize(){
-            arToolkitSource.onResize()	
-            arToolkitSource.copySizeTo(renderer.domElement)	
+            arToolkitSource.onResize()
+            arToolkitSource.copySizeTo(renderer.domElement)
             if( arToolkitContext.arController !== null ){
-                arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
-            }	
+                arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)
+            }
         }
         ////////////////////////////////////////////////////////////////////////////////
         //          initialize arToolkitContext
@@ -167,30 +167,30 @@
 
         var arWorldRoot = smoothedRoot
 
-        // add a torus knot	
-        var geometry	= new THREE.CubeGeometry(1,1,1);
-        var material	= new THREE.MeshNormalMaterial({
-            transparent : true,
-            opacity: 0.5,
-            side: THREE.DoubleSide
-        }); 
-        var mesh	= new THREE.Mesh( geometry, material );
-        mesh.position.y	= geometry.parameters.height/2
-        arWorldRoot.add( mesh );
-
-        var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-        var material	= new THREE.MeshNormalMaterial(); 
-        var mesh	= new THREE.Mesh( geometry, material );
-        mesh.position.y	= 0.5
-        arWorldRoot.add( mesh );
-
-        onRenderFcts.push(function(){
-            mesh.rotation.x += 0.1
-        })
-        
+        // add a torus knot
+        // var geometry	= new THREE.CubeGeometry(1,1,1);
+        // var material	= new THREE.MeshNormalMaterial({
+        //     transparent : true,
+        //     opacity: 0.5,
+        //     side: THREE.DoubleSide
+        // });
+        // var mesh	= new THREE.Mesh( geometry, material );
+        // mesh.position.y	= geometry.parameters.height/2
+        // arWorldRoot.add( mesh );
+        //
+        // var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+        // var material	= new THREE.MeshNormalMaterial();
+        // var mesh	= new THREE.Mesh( geometry, material );
+        // mesh.position.y	= 0.5
+        // arWorldRoot.add( mesh );
+        //
+        // onRenderFcts.push(function(){
+        //     mesh.rotation.x += 0.1
+        // })
+        //
         		// model
 				var loader = new THREE.FBXLoader();
-				loader.load( '../../data/data/handGLoptB.fbx', function ( object ) {
+				loader.load( '../../data/data/lotusani.FBX', function ( object ) {
 
 					object.mixer = new THREE.AnimationMixer( object );
 					mixers.push( object.mixer );
@@ -212,15 +212,15 @@
 					arWorldRoot.add( object );
 
 				} );
-        
+
         //////////FROM FBX IMPORT
         stats = new Stats();
         container.appendChild( stats.dom );
-        
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
 //    function animate(){
         var stats2 = new Stats();
         document.body.appendChild( stats2.dom );
@@ -245,9 +245,9 @@
             })
         })
 
-        
+
     animate();
-        
+
         function animate() {
 
 				requestAnimationFrame( animate );
@@ -268,5 +268,5 @@
 
 			}
 
-    
+
 </script></body>
