@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<title>Participation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    background-color:white;
+    }, {font-family: "Lato", sans-serif}.mySlides {display:none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-bar">
+  <div>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-none w3-text-black w3-hover-text-green">Home</a>
+    <a href="participation.html" class="w3-bar-item w3-button w3-padding-large w3-hover-none" style="color:darkseagreen">Participation</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button w3-hover-none w3-text-black w3-hover-text-green" title="More">Reading <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="reading1.html" class="w3-bar-item w3-button w3-hover-none w3-text-black w3-hover-text-green">Reading 1</a>
+      </div>
+    </div>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button w3-hover-none w3-text-black w3-hover-text-green" title="More">Oblique Process <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="strategies.html" class="w3-bar-item w3-button w3-hover-none w3-text-black w3-hover-text-green">Oblique Strategies</a>
+        <a href="artworks.html" class="w3-bar-item w3-button w3-hover-none w3-text-black w3-hover-text-green">Artworks</a>
+      </div>
+    </div>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button w3-hover-none w3-text-black w3-hover-text-green" title="More">Mod and Tesse <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block">
+        <a href="TnM_phase_1n2.html" class="w3-bar-item w3-button w3-hover-none w3-text-black w3-hover-text-green">Phase 1 and 2</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-green w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="participation.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Participation</a>
+  <a href="strategies.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Oblique Process</a>
+  <a href="artworks.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Artworks</a>
+  <a href="TnM_phase_1n2.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Mod n Tesse Phase 1+2</a>
+  <a href="reading1.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Reading 1</a>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center" id="home">
+    <h1 class="w3-jumbo"  style="color:darkseagreen">Participation</h1>
+    <img src="Media/Cover.JPG" alt="Cover" class="w3-image">
+  </header>
+
+  <table class="w3-table w3-bordered">
+    <tr>
+      <th>Date</th>
+      <th>Events</th>
+    </tr>
+    <tr>
+      <td>Feb 5th</td>
+      <td>Answer definition of Tessellation</td>
+    </tr>
+    <tr>
+      <td>Feb 12th</td>
+      <td>Help Alicia with Cyberduck</td>
+    </tr>
+  </table>
+    
+     
+    <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <p class="w3-medium" style="text-align:center;">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <!-- End footer -->
+  </footer>
+    
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>
