@@ -147,7 +147,7 @@
             ////////////////////////////////////////////////////////////////////////////////
             //   Add your custom image here and comment out existing file (hiro or kanji)
             ////////////////////////////////////////////////////////////////////////////////
-            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
+            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/heart.patt'
             // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
         })
         // build smoothedControls
@@ -308,39 +308,44 @@
                     .setMaterials( materials )
                     .setPath( '../../data/data/' )
 		    .load( 'papa1.obj', function ( object ) {
-                        object.scale.set(.1, .1, .1);
-                        arWorldRoot.add( object );
+                        object.scale.set(.2, .2, .2);
+                        
                         object.rotation.x += 90;
                         object.rotation.y += 0;
                         object.rotation.z += 135;
+            
+                        object.traverse((node) => {
+                        if (node.material) {
+                        node.material.transparent = true;
+                        node.material.opacity = 0.5;
+                        node.material.depthWrite = false;  // not node.depthWrite
+                    }
+                });
+                        arWorldRoot.add( object );
                     }, onProgress, onError );
             } );
         
-            new THREE.MTLLoader()
+        var onError = function () { };
+        THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+        
+	    new THREE.MTLLoader()
             .setPath( '../../data/data/' )
-	    .load( 'papa2.mtl', function ( materials ) {
+	    .load( 'papa1.mtl', function ( materials ) {
                 materials.preload();
                 
 		new THREE.OBJLoader()
                     .setMaterials( materials )
                     .setPath( '../../data/data/' )
-		    .load( 'papa2.obj', function ( object ) {
-                        object.scale.set(.1, .1, .1);
+		    .load( 'papa1.obj', function ( object ) {
+                        object.scale.set(.2, .2, .2);
+                        
                         object.rotation.x += 90;
                         object.rotation.y += 0;
                         object.rotation.z += 135;
             
-//                        object.traverse((node) => {
-//                    if (node.material) {
-//                        node.material.transparent = true;
-//                        node.material.opacity = 0.5;
-//                        node.material.depthWrite = false;  // not node.depthWrite
-//                    }
- //               });
                         arWorldRoot.add( object );
                     }, onProgress, onError );
-            } );
-        
+            } );  
 
 
          //end obj2 code
