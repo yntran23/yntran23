@@ -21,16 +21,16 @@
     <!-- imports libraries to import fbx animations -->
     <script src="../build/three.js"></script>
     
-    <script src="js/loaders/OBJLoader.js"></script>
-    <script src="js/loaders/MTLLoader.js"></script>
-    <script src="js/loaders/DDSLoader.js"></script>
+    <script src="./js/loaders/OBJLoader.js"></script>
+    <script src="./js/loaders/MTLLoader.js"></script>
+    <script src="./js/loaders/DDSLoader.js"></script>
 
-    <script src="js/libs/inflate.min.js"></script>
-    <script src="js/loaders/FBXLoader.js"></script>
+    <script src="./js/libs/inflate.min.js"></script>
+    <script src="./js/loaders/FBXLoader.js"></script>
 
-    <script src="js/controls/OrbitControls.js"></script>
+    <script src="./js/controls/OrbitControls.js"></script>
 
-    <script src="js/Detector.js"></script>
+    <script src="./js/Detector.js"></script>
     <!--ALREADY IMPORTED-- <script src="js/libs/stats.min.js"></script> -->
     
     <script>
@@ -137,7 +137,7 @@
         })
         ////////////////////////////////////////////////////////////////////////////////
     //          Create a ArMarkerControls
-        //        Tutorial to make your own target image pattern: https://medium.com/arjs/how-to-create-your-own-marker-44becbec1105
+        //        Tutorial to make your own target image pattern: https://rholberton.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
         //        More Help/Known problems with cutom images: https://github.com/jeromeetienne/AR.js/issues/366
         ////////////////////////////////////////////////////////////////////////////////
         var markerRoot = new THREE.Group
@@ -147,8 +147,10 @@
             ////////////////////////////////////////////////////////////////////////////////
             //   Add your custom image here and comment out existing file (hiro or kanji)
             ////////////////////////////////////////////////////////////////////////////////
-            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/heart.patt'
+//            patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
             // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
+            // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patternmarkerAR.patt' //this example was made 
+             patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/heart.patt' //this example was made using the pattern maker linked above
         })
         // build smoothedControls
         var smoothedRoot = new THREE.Group()
@@ -172,13 +174,13 @@
         
 //        ///////////////////////////////////////////////////////////
 //        // add a static cube
-//        geometry = new THREE.CubeGeometry(1,1,1);
-//        material = new THREE.MeshNormalMaterial({
-//            transparent : true,
-//            opacity: 0.5,
-//            side: THREE.DoubleSide
-//        }); 
-//        mesh = new THREE.Mesh( geometry, material );
+        geometry = new THREE.CubeGeometry(1,1,1);
+        material = new THREE.MeshNormalMaterial({
+            transparent : true,
+            opacity: 0.5,
+            side: THREE.DoubleSide
+        }); 
+        mesh = new THREE.Mesh( geometry, material );
 //        mesh.position.y	= geometry.parameters.height/2
 //        arWorldRoot.add(mesh);
 //        // end cube code
@@ -186,30 +188,16 @@
         
     
         
-        ///////////////////////////////////////////////////////////
-        //icosphere: example from from 3js playground 
-        //add the geometry, material, and mesh lines from the 3js GUI
-        //MAKE SURE SCALE IS 1 (a scale of 1 will mean your object is as big as the image target)
-        geometry = new THREE.CubeGeometry(1, 1, 1);
-        material = new THREE.MeshNormalMaterial({shading: THREE.FlatShading});
-        mesh = new THREE.Mesh(geometry, material);
-        
-        //Keep these lines
-        mesh.position.y	= 0.5 //position y equals how far away from target 
-       // arWorldRoot.add( mesh ); //instead of adding mesh to the scene right away we add only when the target is detected
-        //end icosphere code
-        ///////////////////////////////////////////////////////////
-        
-        
         /////////////////////////////////////////////////////////
         // add a taurus with rotation animation
 //        geometry = new THREE.TorusKnotGeometry(0.3,0.1,64,16);
 //        material = new THREE.MeshNormalMaterial(); 
 //        mesh = new THREE.Mesh( geometry, material );
 //        mesh.position.y	= 0.5
-//        arWorldRoot.add( mesh );
+//        mesh.position.x	= 1
+////        arWorldRoot.add( mesh );
 //        onRenderFcts.push(function(){
-//            mesh.rotation.x += 0.1
+//        mesh.rotation.x += 0.1
 //        })
         // end taurus code
        /////////////////////////////////////////////////////////
@@ -218,7 +206,8 @@
         ///////////////////////////////////////////////////////////
         // add a fbx model with animation
 //        var loader = new THREE.FBXLoader();
-//        loader.load( '../../data/data/handGLoptB.fbx', function ( object ) {
+//        loader.load( '../../data/data/handGLoptB.fbx', function ( object ) { //hand animation created with rig
+//        //loader.load( '../../data/data/fbxexporttestspherecube3blender1.fbx', function ( object ) {
 //            object.mixer = new THREE.AnimationMixer( object );
 //            mixers.push( object.mixer );
 //            var action = object.mixer.clipAction( object.animations[ 0 ] );
@@ -230,6 +219,7 @@
 //                }
 //            } );
 //            object.scale.set(.02, .02, .02);
+//            object.position.x = -1
 //            arWorldRoot.add( object );
 //        } );
         //end fbx code
@@ -277,6 +267,7 @@
 // //					object.position.y = - 95;
 // //					scene.add( object );
 //             object.scale.set(.02, .02, .02);
+//             object.position.z	= -1
 //             arWorldRoot.add( object );
 //
 //         }, onProgress, onError );
@@ -285,9 +276,11 @@
         ///////////////////////////////////////////////////////////
         
         
-         ///////////////////////////////////////////////////////////
-         //add obj model2 (static) with material textures
-	//!!!!****** FILE NAMES CAN NOT HAVE CHARACTERS (NO DASHES OR UNDERSCORES) ******!!!!!!!!
+        ///////////////////////////////////////////////////////////
+        //add obj model2 (static) with material textures
+	    //!!!!****** FILE NAMES CAN NOT HAVE CHARACTERS (NO DASHES OR UNDERSCORES) ******!!!!!!!!
+        //!!!!****** IMAGE TEXTURES DON'T WORK USE CODE ABOVE TO USE .JPG IMAGE TEXTURE ******!!!!!!!!
+        //!!!!****** MAYA OR BLENDER NATIVE MATERIALS ONLY (NO ARNOLD OR CYCLES) ******!!!!!!!!
 	    
         var onProgress = function ( xhr ) {
             if ( xhr.lengthComputable ) {
@@ -303,54 +296,79 @@
             .setPath( '../../data/data/' )
 	    .load( 'papa1.mtl', function ( materials ) {
                 materials.preload();
+
                 
-		new THREE.OBJLoader()
-                    .setMaterials( materials )
-                    .setPath( '../../data/data/' )
-		    .load( 'papa1.obj', function ( object ) {
-                        object.scale.set(.2, .2, .2);
-                        
-                        object.rotation.x += 90;
-                        object.rotation.y += 0;
-                        object.rotation.z += 135;
+            new THREE.OBJLoader()
+            .setMaterials( materials )
+            .setPath( '../../data/data/' )
             
-                        object.traverse((node) => {
-                        if (node.material) {
-                        node.material.transparent = true;
-                        node.material.opacity = 0.5;
-                        node.material.depthWrite = false;  // not node.depthWrite
-                    }
-                });
-                        arWorldRoot.add( object );
-                    }, onProgress, onError );
-            } );
+		    .load( 'papa1.obj', function ( object ) {
+                object.scale.set(.15, .15, .15);
+                object.position.z	= -0.2;
+                //object.position.x	= -.2;
+                object.rotation.x = 90;
+                object.rotation.y = 0;
+                object.rotation.z = 135;
+                
+                
+                arWorldRoot.add( object );
+            }, onProgress, onError );
+        } );
         
+
+//
+//         //end obj2 code
+//        ///////////////////////////////////////////////////////////
+        
+        
+        
+        
+        var onProgress = function ( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+            }
+        };
+	    
         var onError = function () { };
         THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
         
 	    new THREE.MTLLoader()
             .setPath( '../../data/data/' )
-	    .load( 'papa1.mtl', function ( materials ) {
+	    .load( 'papa2.mtl', function ( materials ) {
                 materials.preload();
+
                 
-		new THREE.OBJLoader()
-                    .setMaterials( materials )
-                    .setPath( '../../data/data/' )
-		    .load( 'papa1.obj', function ( object ) {
-                        object.scale.set(.2, .2, .2);
-                        
-                        object.rotation.x += 90;
-                        object.rotation.y += 0;
-                        object.rotation.z += 135;
+            new THREE.OBJLoader()
+            .setMaterials( materials )
+            .setPath( '../../data/data/' )
             
-                        arWorldRoot.add( object );
-                    }, onProgress, onError );
-            } );  
-
-
-         //end obj2 code
-        ///////////////////////////////////////////////////////////
+		    .load( 'papa2.obj', function ( object ) {
+                object.scale.set(.15, .15, .15);
+                object.position.z	= -0.2;
+                //object.position.x	= -.2;
+                object.rotation.x = 90;
+                object.rotation.y = 0;
+                object.rotation.z = 135;
+                
+                object.traverse((node) => {
+                    if (node.material) {
+                        node.material.transparent = true;
+                        node.material.opacity = 0.5
+                        node.material.depthWrite = false;  // not node.depthWrite
+                    }
+                });
+                
+                arWorldRoot.add( object );
+            }, onProgress, onError );
+        } );
         
+
+   
+        
+
+        
+               
         
         
         //////////FROM FBX IMPORT
