@@ -294,7 +294,7 @@
         
 	    new THREE.MTLLoader()
             .setPath( '../../data/data/' )
-	    .load( 'dadmonument.mtl', function ( materials ) {
+	    .load( 'papa.mtl', function ( materials ) {
                 materials.preload();
 
                 
@@ -302,7 +302,7 @@
             .setMaterials( materials )
             .setPath( '../../data/data/' )
             
-		    .load( 'dadmonument.obj', function ( object ) {
+		    .load( 'papa.obj', function ( object ) {
                 object.scale.set(.15, .15, .15);
                 object.position.z	= -0.2;
                 //object.position.x	= -.2;
